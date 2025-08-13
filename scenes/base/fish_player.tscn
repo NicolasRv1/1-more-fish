@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4nfvqn0hpl1w"]
+
+[ext_resource type="Script" uid="uid://ce1db8icdhxge" path="res://fishFishfish/scripts/fish_player.gd" id="1_317ln"]
+[ext_resource type="Texture2D" uid="uid://w5mgandndd8a" path="res://fishFishfish/assets/cursor/fishCursor.png" id="1_uch3y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_317ln"]
+size = Vector2(46, 15)
+
+[node name="fish_player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 512
+collision_mask = 256
+motion_mode = 1
+script = ExtResource("1_317ln")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uch3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_317ln")

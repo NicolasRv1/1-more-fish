@@ -1,0 +1,33 @@
+# Godot 4.x specific ignores
+.godot/
+
+# Export configs (optional, keep if you want to share export presets)
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated)
+*.translation
+
+# Imported assets (cache)
+*.import
+*.oggstr
+*.stex
+*.ctex
+*.mp3str
+*.mkvstr
+
+# Mono / C# specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.log.*
+*.swp
+
+# OS-specific
+.DS_Store
+Thumbs.db

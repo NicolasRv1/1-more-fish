@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://0kekappix07w"]
+
+[ext_resource type="Script" uid="uid://7g0jleb8ldwe" path="res://fishFishfish/scripts/door.gd" id="1_bdok0"]
+
+[node name="door" type="Area2D"]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("1_bdok0")
+
+[connection signal="area_entered" from="." to="." method="_on_action_point_entered"]

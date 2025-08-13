@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://rpbjj5eoghi3"]
+
+[ext_resource type="Script" uid="uid://bgn70pr0huq8g" path="res://fishFishfish/scripts/fishs/FishData.gd" id="1_rel3i"]
+
+[resource]
+script = ExtResource("1_rel3i")
+fish_name = "Blue Fish"
+bullet_hell_duration = 6.0
+bullet_speed = 400.0
+value = 0
+metadata/_custom_type_script = "uid://bgn70pr0huq8g"

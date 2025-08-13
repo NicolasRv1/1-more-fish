@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://br5fwugrmre6u"]
+
+[ext_resource type="Texture2D" uid="uid://ddv728o1aw6a5" path="res://fishFishfish/assets/mycreations/bullet.png" id="1_kk0ce"]
+[ext_resource type="Script" uid="uid://d00wvscu2y3xt" path="res://fishFishfish/scripts/bullet_patterns/basic_follow_pattern.gd" id="1_lfmbo"]
+[ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://fishFishfish/scenes/base/deadzone.tscn" id="3_6x4ee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfmbo"]
+radius = 20.025
+
+[node name="basic_bullet" type="Area2D"]
+script = ExtResource("1_lfmbo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("1_kk0ce")
+
+[node name="deadzone" parent="." instance=ExtResource("3_6x4ee")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deadzone"]
+shape = SubResource("CircleShape2D_lfmbo")
