@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhwjabj3myyp1"]
+
+[ext_resource type="Texture2D" uid="uid://b6bcjo1gesoex" path="res://assets/mycreations/fishes/snake fish.png" id="1_5rr4c"]
+[ext_resource type="Script" uid="uid://co24cd3gvljpj" path="res://scripts/fishs/snake_fish.gd" id="1_i6qj4"]
+
+[node name="snake_fish" type="Area2D"]
+script = ExtResource("1_i6qj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_5rr4c")
+
+[node name="fire_spawn" type="Node2D" parent="."]
+position = Vector2(0, 138)
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="start" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="start" to="." method="_on_start_timeout"]

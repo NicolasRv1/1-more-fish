@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://xlwgb7t4x60y"]
+
+[ext_resource type="Texture2D" uid="uid://1epga5vaw7h4" path="res://assets/mycreations/fishes/catfish.png" id="1_jtspa"]
+[ext_resource type="Script" uid="uid://f0f37qbi4p26" path="res://scripts/fishs/cat_fish.gd" id="1_lcc14"]
+
+[node name="cat_fish" type="Area2D"]
+script = ExtResource("1_lcc14")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_jtspa")
+
+[node name="fire_spawn" type="Node2D" parent="."]
+position = Vector2(-18, 139)
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="start" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="start" to="." method="_on_start_timeout"]

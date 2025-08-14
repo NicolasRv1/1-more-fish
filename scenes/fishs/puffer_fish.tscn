@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm4wfo8t2r02s"]
+
+[ext_resource type="Texture2D" uid="uid://djnhih5hyb0pk" path="res://assets/mycreations/fishes/pufferfish.png" id="1_3e2ql"]
+[ext_resource type="Script" uid="uid://d3enrwe5pwvkw" path="res://scripts/fishs/puffer_fish.gd" id="1_lr5bc"]
+
+[node name="puffer_fish" type="Area2D"]
+script = ExtResource("1_lr5bc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_3e2ql")
+
+[node name="fire_spawn" type="Node2D" parent="."]
+position = Vector2(0, 99)
+
+[node name="cooldown" type="Timer" parent="."]
+
+[node name="start" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="start" to="." method="_on_start_timeout"]

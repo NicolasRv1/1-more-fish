@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://pbh4qj120fvf"]
+
+[ext_resource type="Script" uid="uid://ktlel3oky8ew" path="res://scripts/fishs/old_fish.gd" id="1_uhcxh"]
+[ext_resource type="Texture2D" uid="uid://c4jvnfked34xx" path="res://assets/mycreations/fishes/old fish.png" id="2_vr7kr"]
+
+[node name="old_fish" type="Area2D"]
+script = ExtResource("1_uhcxh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("2_vr7kr")
+
+[node name="fire_spawn" type="Node2D" parent="."]
+position = Vector2(-8, 116)
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="start" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="start" to="." method="_on_start_timeout"]

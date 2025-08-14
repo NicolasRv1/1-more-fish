@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://habegg30wt0k"]
 
-[ext_resource type="Texture2D" uid="uid://c8ybmdaif0x08" path="res://fishFishfish/assets/mycreations/fishes/purplefish.png" id="1_8c1q7"]
-[ext_resource type="Script" uid="uid://c51703wu2tbjn" path="res://fishFishfish/scripts/fishs/purple_fish.gd" id="1_xymxi"]
+[ext_resource type="Texture2D" uid="uid://c8ybmdaif0x08" path="res://assets/mycreations/fishes/purplefish.png" id="1_8c1q7"]
+[ext_resource type="Script" uid="uid://c51703wu2tbjn" path="res://scripts/fishs/purple_fish.gd" id="1_xymxi"]
 
 [node name="purple_shark" type="StaticBody2D"]
 collision_layer = 256

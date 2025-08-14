@@ -3,11 +3,11 @@ extends FishData
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fish_name = str("Blue Fish")
-	bullet_hell_duration = float(10.0)
-	value = 8
+	fish_name = str("Golden Fish")
+	bullet_hell_duration = float(20.0)
+	value = 120
 	bullet_pattern = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
-	bullet_speed = 600.0
+	bullet_speed = 800.0
 	
 
 
@@ -22,6 +22,7 @@ func _on_cooldown_timeout() -> void:
 		var direction = (player.global_position - self.global_position).normalized()
 		bullet.set_direction(direction)
 		
+
 
 
 func _on_start_timeout() -> void:

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmk8rbfbw6euk"]
 
-[ext_resource type="Script" uid="uid://dc1i7vm5vvc7n" path="res://fishFishfish/scripts/fishing_window.gd" id="1_5ceif"]
-[ext_resource type="Texture2D" uid="uid://sl3x6h5wofej" path="res://fishFishfish/assets/mycreations/battlescreen.png" id="2_rwlcf"]
-[ext_resource type="PackedScene" uid="uid://b4nfvqn0hpl1w" path="res://fishFishfish/scenes/base/fish_player.tscn" id="3_03ma2"]
-[ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://fishFishfish/scenes/base/deadzone.tscn" id="4_qg37s"]
-[ext_resource type="Texture2D" uid="uid://byjrrweiugcny" path="res://fishFishfish/assets/mycreations/battleboxlimit.png" id="5_rwlcf"]
+[ext_resource type="Script" uid="uid://dc1i7vm5vvc7n" path="res://scripts/fishing_window.gd" id="1_5ceif"]
+[ext_resource type="Texture2D" uid="uid://sl3x6h5wofej" path="res://assets/mycreations/battlescreen.png" id="2_rwlcf"]
+[ext_resource type="PackedScene" uid="uid://b4nfvqn0hpl1w" path="res://scenes/base/fish_player.tscn" id="3_03ma2"]
+[ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="4_qg37s"]
+[ext_resource type="Texture2D" uid="uid://byjrrweiugcny" path="res://assets/mycreations/battleboxlimit.png" id="5_rwlcf"]
 
 [node name="fishing_window" type="Node2D"]
 script = ExtResource("1_5ceif")

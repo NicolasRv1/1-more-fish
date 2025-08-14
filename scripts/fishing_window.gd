@@ -10,6 +10,9 @@ var enemy_instance : Node = null
 
 var rarity = randf()
 
+@export
+var test_fish : PackedScene
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,10 +40,32 @@ func _process(_delta: float) -> void:
 
 
 func spawn_fish():
-	if rarity <= 0.6:
-		fish_to_spawn = FishDatabase.fish["Blue Fish"]
-	else:
-		fish_to_spawn = FishDatabase.fish["Purple Fish"]
+	randomize()
+	
+	var common_key: Array = []
+	var rare_key: Array = []
+	
+	for c in FishDatabase.common_fish:
+		common_key.append(c)
+	
+	for r in FishDatabase.rare_fish:
+		rare_key.append(r)
+	
+	
+	var random_common_key = common_key.pick_random()
+	var random_rare_key = rare_key.pick_random()
+	
+	var random_common: PackedScene = FishDatabase.common_fish[random_common_key]
+	var random_rare: PackedScene = FishDatabase.rare_fish[random_rare_key]
+	
+	if rarity <= 0.5 and !test_fish:
+		fish_to_spawn = random_common
+	elif rarity >= 0.5 and !test_fish:
+		fish_to_spawn = random_rare
+	
+	if test_fish:
+		fish_to_spawn = test_fish
+
 
 
 	enemy_instance = fish_to_spawn.instantiate()

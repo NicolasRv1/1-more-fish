@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkcnosgfo4gav"]
 
-[ext_resource type="Texture2D" uid="uid://dyqjsrtcc6mc5" path="res://fishFishfish/assets/mycreations/fishes/bluefish.png" id="1_qovcj"]
-[ext_resource type="Script" uid="uid://dohcnuwarxkck" path="res://fishFishfish/scripts/fishs/blue_fish.gd" id="1_u7wxf"]
+[ext_resource type="Texture2D" uid="uid://dyqjsrtcc6mc5" path="res://assets/mycreations/fishes/bluefish.png" id="1_qovcj"]
+[ext_resource type="Script" uid="uid://dohcnuwarxkck" path="res://scripts/fishs/blue_fish.gd" id="1_u7wxf"]
 
 [node name="blue_fish" type="StaticBody2D"]
 collision_layer = 256

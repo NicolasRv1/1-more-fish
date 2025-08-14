@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbsg231t4yym3"]
+
+[ext_resource type="Script" uid="uid://c6opiktfrak8k" path="res://scripts/bullet_patterns/boomerang.gd" id="1_3xykp"]
+[ext_resource type="Texture2D" uid="uid://dwr114p41x3g4" path="res://assets/mycreations/bullet3.png" id="1_lh6xc"]
+[ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="2_3xykp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hxsx"]
+radius = 25.0799
+
+[node name="boomerang" type="Area2D"]
+script = ExtResource("1_3xykp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_lh6xc")
+
+[node name="deadzone" parent="." instance=ExtResource("2_3xykp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deadzone"]
+shape = SubResource("CircleShape2D_6hxsx")
