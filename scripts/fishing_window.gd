@@ -58,9 +58,9 @@ func spawn_fish():
 	var random_common: PackedScene = FishDatabase.common_fish[random_common_key]
 	var random_rare: PackedScene = FishDatabase.rare_fish[random_rare_key]
 	
-	if rarity <= 0.5 and !test_fish:
+	if rarity <= 0.80 and !test_fish:
 		fish_to_spawn = random_common
-	elif rarity >= 0.5 and !test_fish:
+	else:
 		fish_to_spawn = random_rare
 	
 	if test_fish:
