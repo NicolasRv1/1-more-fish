@@ -1,5 +1,12 @@
 extends Node2D
 
+# screen_spots = 
+	#Vector2(0.25, 0.25), # top-left quadrant
+	#Vector2(0.75, 0.25), # top-right quadrant
+	#Vector2(0.5, 0.5),   # center
+	#Vector2(0.25, 0.75), # bottom-left quadrant
+	#Vector2(0.75, 0.75)  # bottom-right quadrant
+#
 
 @onready 
 var bullet_time: Timer = $bullet_time
@@ -14,14 +21,29 @@ var rarity = randf()
 var test_fish : PackedScene
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var screen_center = get_viewport().get_visible_rect().size / 2
+	var lower_center = screen_center + Vector2(-40, 200)
+	
+	var screen_size = get_viewport().get_visible_rect().size
+	
+	# Bottom Left
+	TargetPositions.bottom_left_target_pos = Vector2(screen_size.x * 0.25, screen_size.y * 0.75)
+	
+	# Bottom Right
+	TargetPositions.bottom_right_target_pos = Vector2(screen_size.x * 0.75, screen_size.y * 0.75)
+	
+	#Center
+	TargetPositions.center_target_pos = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
+	
 	spawn_fish()
 	
 	
 	bullet_timer()
 	
-	Input.warp_mouse(Vector2(931.0, 710.0))
+	Input.warp_mouse(lower_center)
 	
 	
 	
@@ -71,7 +93,7 @@ func spawn_fish():
 	enemy_instance = fish_to_spawn.instantiate()
 	add_child(enemy_instance)
 	
-	enemy_instance.global_position = Vector2(920.0, 186.0)
+	enemy_instance.global_position = $spawn_pos.global_position
 	
 	
 	

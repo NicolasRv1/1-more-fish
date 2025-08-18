@@ -11,18 +11,45 @@ func _ready() -> void:
 	
 
 
+
+
+
 func _on_cooldown_timeout() -> void:
 	if player:
-		var bullet = bullet_pattern.instantiate()
-		bullet.speed = bullet_speed
+		# follow_bullet = bullet that follows the player pos
+		var follow_bullet = bullet_pattern.instantiate()
+		follow_bullet.speed = bullet_speed + 100.0
 		
-		get_parent().add_child(bullet)
-		bullet.global_position = $fire_spawn.global_position
+		get_parent().add_child(follow_bullet)
+		follow_bullet.global_position = $fire_spawn.global_position
 		
 		var direction = (player.global_position - self.global_position).normalized()
-		bullet.set_direction(direction)
+		follow_bullet.set_direction(direction)
 		
+	var left_bullet = bullet_pattern.instantiate()
+	left_bullet.speed = bullet_speed - 200.0
+	
+	var right_bullet = bullet_pattern.instantiate()
+	right_bullet.speed = bullet_speed - 200.0
+	
+	get_parent().add_child(left_bullet)
+	get_parent().add_child(right_bullet)
+	
+	left_bullet.global_position = $fire_spawn.global_position
+	right_bullet.global_position = $fire_spawn.global_position
+	
+	var left_dir = (TargetPositions.bottom_left_target_pos - self.global_position).normalized()
+	var right_dir = (TargetPositions.bottom_right_target_pos - self.global_position).normalized()
+	
+	left_bullet.set_direction(left_dir)
+	right_bullet.set_direction(right_dir)
+
+
 
 
 func _on_start_timeout() -> void:
 	$cooldown.start()
+
+
+func get_screen_point(perc: Vector2) -> Vector2:
+	return get_viewport().get_visible_rect().size * perc

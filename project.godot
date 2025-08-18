@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/global.gd"
 FishDatabase="*res://scripts/fishs/FishDatabase.gd"
+TargetPositions="*res://scripts/bullet_patterns/target_pos.gd"
 
 [display]
 
