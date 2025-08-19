@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=4 uid="uid://c5qh6a7e1qgo4"]
 
-[ext_resource type="Script" uid="uid://bmf01h7jw4b7t" path="res://fishFishfish/scripts/hut.gd" id="1_k35da"]
-[ext_resource type="PackedScene" uid="uid://6hkj1cpvlm5l" path="res://fishFishfish/scenes/base/player.tscn" id="2_jrfp1"]
-[ext_resource type="Texture2D" uid="uid://be83dm8gul8lm" path="res://fishFishfish/assets/Pixel Lands Interiors Demo/Pixel Lands Interiors Demo/interiors_demo.png" id="3_alyd7"]
-[ext_resource type="PackedScene" uid="uid://0kekappix07w" path="res://fishFishfish/scenes/base/door.tscn" id="4_t882b"]
-[ext_resource type="PackedScene" uid="uid://8gf7uhytaiue" path="res://fishFishfish/scenes/base/ui_manager.tscn" id="5_0sfjd"]
+[ext_resource type="Script" uid="uid://bmf01h7jw4b7t" path="res://scripts/hut.gd" id="1_k35da"]
+[ext_resource type="PackedScene" uid="uid://6hkj1cpvlm5l" path="res://scenes/base/player.tscn" id="2_jrfp1"]
+[ext_resource type="Texture2D" uid="uid://be83dm8gul8lm" path="res://assets/Pixel Lands Interiors Demo/Pixel Lands Interiors Demo/interiors_demo.png" id="3_alyd7"]
+[ext_resource type="PackedScene" uid="uid://0kekappix07w" path="res://scenes/base/door.tscn" id="4_t882b"]
+[ext_resource type="PackedScene" uid="uid://8gf7uhytaiue" path="res://scenes/base/ui_manager.tscn" id="5_0sfjd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk1x3"]
 texture = ExtResource("3_alyd7")

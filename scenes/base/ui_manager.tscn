@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://8gf7uhytaiue"]
 
-[ext_resource type="Script" uid="uid://bbb8wfp7w4spx" path="res://fishFishfish/scripts/UI.gd" id="1_gp8gx"]
-[ext_resource type="Texture2D" uid="uid://w5mgandndd8a" path="res://fishFishfish/assets/cursor/fishCursor.png" id="2_68ulk"]
+[ext_resource type="Script" uid="uid://bbb8wfp7w4spx" path="res://scripts/UI.gd" id="1_gp8gx"]
+[ext_resource type="Texture2D" uid="uid://w5mgandndd8a" path="res://assets/cursor/fishCursor.png" id="2_68ulk"]
 
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_gp8gx")

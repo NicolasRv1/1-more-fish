@@ -1,5 +1,9 @@
 extends Node2D
 
+
+
+
+
 # screen_spots = 
 	#Vector2(0.25, 0.25), # top-left quadrant
 	#Vector2(0.75, 0.25), # top-right quadrant
@@ -24,8 +28,6 @@ var test_fish : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var screen_center = get_viewport().get_visible_rect().size / 2
-	var lower_center = screen_center + Vector2(-40, 200)
 	
 	var screen_size = get_viewport().get_visible_rect().size
 	
@@ -35,16 +37,21 @@ func _ready() -> void:
 	# Bottom Right
 	TargetPositions.bottom_right_target_pos = Vector2(screen_size.x * 0.75, screen_size.y * 0.75)
 	
-	#Center
+	# Center
 	TargetPositions.center_target_pos = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
+	
+	# Bottom Center
+	TargetPositions.bottom_center_target_pos = Vector2(screen_size.x * 0.5, screen_size.y * 0.75)
 	
 	spawn_fish()
 	
 	
 	bullet_timer()
 	
-	Input.warp_mouse(lower_center)
+	var screen_center = TargetPositions.bottom_center_target_pos
 	
+	Input.warp_mouse(screen_center)
+	print(screen_center)
 	
 	
 
@@ -54,6 +61,7 @@ func _process(_delta: float) -> void:
 		
 		bullet_time.stop()
 	
+
 
 
 

@@ -26,11 +26,26 @@ func _on_cooldown_timeout() -> void:
 		var direction = (player.global_position - self.global_position).normalized()
 		follow_bullet.set_direction(direction)
 		
+
+
+
+
+
+func _on_start_timeout() -> void:
+	$cooldown.start()
+	$burst_cooldown.start()
+
+
+func get_screen_point(perc: Vector2) -> Vector2:
+	return get_viewport().get_visible_rect().size * perc
+
+
+func _on_burst_cooldown_timeout() -> void:
 	var left_bullet = bullet_pattern.instantiate()
-	left_bullet.speed = bullet_speed - 200.0
+	left_bullet.speed = bullet_speed - 300.0
 	
 	var right_bullet = bullet_pattern.instantiate()
-	right_bullet.speed = bullet_speed - 200.0
+	right_bullet.speed = bullet_speed - 300.0
 	
 	get_parent().add_child(left_bullet)
 	get_parent().add_child(right_bullet)
@@ -43,13 +58,3 @@ func _on_cooldown_timeout() -> void:
 	
 	left_bullet.set_direction(left_dir)
 	right_bullet.set_direction(right_dir)
-
-
-
-
-func _on_start_timeout() -> void:
-	$cooldown.start()
-
-
-func get_screen_point(perc: Vector2) -> Vector2:
-	return get_viewport().get_visible_rect().size * perc
