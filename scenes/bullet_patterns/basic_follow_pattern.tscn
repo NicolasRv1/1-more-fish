@@ -8,6 +8,7 @@
 radius = 20.025
 
 [node name="basic_bullet" type="Area2D"]
+z_index = 2
 script = ExtResource("1_lfmbo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

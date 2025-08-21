@@ -29,29 +29,18 @@ var test_fish : PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	var screen_size = get_viewport().get_visible_rect().size
 	
-	# Bottom Left
-	TargetPositions.bottom_left_target_pos = Vector2(screen_size.x * 0.25, screen_size.y * 0.75)
-	
-	# Bottom Right
-	TargetPositions.bottom_right_target_pos = Vector2(screen_size.x * 0.75, screen_size.y * 0.75)
-	
-	# Center
-	TargetPositions.center_target_pos = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
-	
-	# Bottom Center
-	TargetPositions.bottom_center_target_pos = Vector2(screen_size.x * 0.5, screen_size.y * 0.75)
+	get_targets()
 	
 	spawn_fish()
 	
 	
 	bullet_timer()
 	
-	var screen_center = TargetPositions.bottom_center_target_pos
+	# spawn pos for the player
+	var spawn = TargetPositions.center
 	
-	Input.warp_mouse(screen_center)
-	print(screen_center)
+	Input.warp_mouse(spawn)
 	
 	
 
@@ -101,7 +90,7 @@ func spawn_fish():
 	enemy_instance = fish_to_spawn.instantiate()
 	add_child(enemy_instance)
 	
-	enemy_instance.global_position = $spawn_pos.global_position
+	enemy_instance.global_position = $targets/enemy_spawn.global_position
 	
 	
 	
@@ -117,3 +106,20 @@ func bullet_timer():
 	
 	bullet_time.start()
 	
+
+
+func get_targets():
+	
+	# Bottoms Left and Right
+	TargetPositions.bottom_left = $targets/bottom_left.global_position
+	TargetPositions.bottom_right = $targets/bottom_right.global_position
+	
+	# Cones
+	TargetPositions.cone_left = $targets/cone_left.global_position
+	TargetPositions.cone_right = $targets/cone_right.global_position
+	
+	# Centers
+	TargetPositions.center = $targets/center.global_position
+	TargetPositions.center_down = $targets/center_down.global_position
+	TargetPositions.center_left = $targets/center_left.global_position
+	TargetPositions.center_right = $targets/center_right.global_position

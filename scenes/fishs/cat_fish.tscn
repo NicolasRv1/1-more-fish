@@ -11,7 +11,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("1_jtspa")
 
 [node name="fire_spawn" type="Node2D" parent="."]
-position = Vector2(-18, 139)
+position = Vector2(0, 35)
 
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 0.4

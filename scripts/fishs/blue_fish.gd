@@ -1,6 +1,7 @@
 extends FishData
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Blue Fish")
@@ -26,6 +27,8 @@ func _on_cooldown_timeout() -> void:
 		var direction = (player.global_position - self.global_position).normalized()
 		follow_bullet.set_direction(direction)
 		
+	
+
 
 
 
@@ -38,23 +41,3 @@ func _on_start_timeout() -> void:
 
 func get_screen_point(perc: Vector2) -> Vector2:
 	return get_viewport().get_visible_rect().size * perc
-
-
-func _on_burst_cooldown_timeout() -> void:
-	var left_bullet = bullet_pattern.instantiate()
-	left_bullet.speed = bullet_speed - 300.0
-	
-	var right_bullet = bullet_pattern.instantiate()
-	right_bullet.speed = bullet_speed - 300.0
-	
-	get_parent().add_child(left_bullet)
-	get_parent().add_child(right_bullet)
-	
-	left_bullet.global_position = $fire_spawn.global_position
-	right_bullet.global_position = $fire_spawn.global_position
-	
-	var left_dir = (TargetPositions.bottom_left_target_pos - self.global_position).normalized()
-	var right_dir = (TargetPositions.bottom_right_target_pos - self.global_position).normalized()
-	
-	left_bullet.set_direction(left_dir)
-	right_bullet.set_direction(right_dir)

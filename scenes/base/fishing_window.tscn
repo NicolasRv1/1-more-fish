@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmk8rbfbw6euk"]
+[gd_scene load_steps=6 format=3 uid="uid://bmk8rbfbw6euk"]
 
 [ext_resource type="Script" uid="uid://dc1i7vm5vvc7n" path="res://scripts/fishing_window.gd" id="1_5ceif"]
-[ext_resource type="PackedScene" uid="uid://dkcnosgfo4gav" path="res://scenes/fishs/blue_fish.tscn" id="2_qum10"]
 [ext_resource type="Texture2D" uid="uid://sl3x6h5wofej" path="res://assets/mycreations/battlescreen.png" id="2_rwlcf"]
 [ext_resource type="PackedScene" uid="uid://b4nfvqn0hpl1w" path="res://scenes/base/fish_player.tscn" id="3_03ma2"]
 [ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="4_qg37s"]
@@ -9,7 +8,6 @@
 
 [node name="fishing_window" type="Node2D"]
 script = ExtResource("1_5ceif")
-test_fish = ExtResource("2_qum10")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(964, 537)
@@ -26,14 +24,43 @@ position = Vector2(915, 196)
 
 [node name="limit" type="CollisionPolygon2D" parent="deadzone"]
 position = Vector2(-5, 231)
-polygon = PackedVector2Array(-630, 66, -632, 535, -835, 564, -866, -2, 990, -26, 837, 641, 696, 648, -635, 540, 699, 540, 697, 66)
+polygon = PackedVector2Array(-412, 147, -412, 510, -750, 533, -790, 65, 714, 17, 626, 626, -607, 611, -412, 510, 475, 511, 475, 147)
 
 [node name="Battleboxlimit" type="Sprite2D" parent="."]
-position = Vector2(939, 679)
-scale = Vector2(2.59362, 2.72)
+position = Vector2(938, 716)
+scale = Vector2(1.73356, 2.09583)
 texture = ExtResource("5_rwlcf")
 
-[node name="spawn_pos" type="Node2D" parent="."]
-position = Vector2(920, 196)
+[node name="targets" type="Node" parent="."]
+
+[node name="enemy_spawn" type="Node2D" parent="targets"]
+position = Vector2(918, 196)
+
+[node name="bottom_right" type="Marker2D" parent="targets"]
+position = Vector2(1235, 856)
+
+[node name="cone_right" type="Marker2D" parent="targets"]
+position = Vector2(1066, 856)
+
+[node name="bottom_left" type="Marker2D" parent="targets"]
+position = Vector2(638, 856)
+
+[node name="cone_left" type="Marker2D" parent="targets"]
+position = Vector2(802, 856)
+
+[node name="center" type="Marker2D" parent="targets"]
+position = Vector2(937, 750)
+
+[node name="center_left" type="Marker2D" parent="targets"]
+position = Vector2(702, 750)
+
+[node name="center_right" type="Marker2D" parent="targets"]
+position = Vector2(1161, 750)
+
+[node name="center_up" type="Marker2D" parent="targets"]
+position = Vector2(937, 639)
+
+[node name="center_down" type="Marker2D" parent="targets"]
+position = Vector2(937, 865)
 
 [connection signal="timeout" from="bullet_time" to="." method="_on_bullet_time_timeout"]
