@@ -58,7 +58,7 @@ position = Vector2(702, 750)
 position = Vector2(1161, 750)
 
 [node name="center_up" type="Marker2D" parent="targets"]
-position = Vector2(937, 639)
+position = Vector2(937, 657)
 
 [node name="center_down" type="Marker2D" parent="targets"]
 position = Vector2(937, 865)

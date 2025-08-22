@@ -120,6 +120,7 @@ func get_targets():
 	
 	# Centers
 	TargetPositions.center = $targets/center.global_position
+	TargetPositions.center_up = $targets/center_up.global_position
 	TargetPositions.center_down = $targets/center_down.global_position
 	TargetPositions.center_left = $targets/center_left.global_position
 	TargetPositions.center_right = $targets/center_right.global_position

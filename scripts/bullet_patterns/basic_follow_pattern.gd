@@ -2,7 +2,7 @@ extends Area2D
 
 var speed : float
 var velocity : Vector2 = Vector2.ZERO
-var lifetime := 6.0
+var lifetime := 8.0
 
 
 func _physics_process(delta: float) -> void:
