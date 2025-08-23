@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmk8rbfbw6euk"]
+[gd_scene load_steps=7 format=3 uid="uid://bmk8rbfbw6euk"]
 
 [ext_resource type="Script" uid="uid://dc1i7vm5vvc7n" path="res://scripts/fishing_window.gd" id="1_5ceif"]
 [ext_resource type="Texture2D" uid="uid://sl3x6h5wofej" path="res://assets/mycreations/battlescreen.png" id="2_rwlcf"]
 [ext_resource type="PackedScene" uid="uid://b4nfvqn0hpl1w" path="res://scenes/base/fish_player.tscn" id="3_03ma2"]
 [ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="4_qg37s"]
+[ext_resource type="Script" uid="uid://dyxjhbw7q8uj" path="res://scripts/center_screen.gd" id="4_qum10"]
 [ext_resource type="Texture2D" uid="uid://byjrrweiugcny" path="res://assets/mycreations/battleboxlimit.png" id="5_rwlcf"]
 
 [node name="fishing_window" type="Node2D"]
@@ -14,22 +15,38 @@ position = Vector2(964, 537)
 scale = Vector2(3.00625, 3.00556)
 texture = ExtResource("2_rwlcf")
 
-[node name="bullet_time" type="Timer" parent="."]
+[node name="arena_box" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.5
+offset_top = -181.5
+offset_right = 444.5
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_qum10")
 
-[node name="fish_player" parent="." instance=ExtResource("3_03ma2")]
-position = Vector2(937, 748)
+[node name="deadzone" parent="arena_box" instance=ExtResource("4_qg37s")]
+position = Vector2(1354.5, 606.5)
 
-[node name="deadzone" parent="." instance=ExtResource("4_qg37s")]
-position = Vector2(915, 196)
-
-[node name="limit" type="CollisionPolygon2D" parent="deadzone"]
-position = Vector2(-5, 231)
+[node name="limit" type="CollisionPolygon2D" parent="arena_box/deadzone"]
 polygon = PackedVector2Array(-412, 147, -412, 510, -750, 533, -790, 65, 714, 17, 626, 626, -607, 611, -412, 510, 475, 511, 475, 147)
 
 [node name="Battleboxlimit" type="Sprite2D" parent="."]
 position = Vector2(938, 716)
 scale = Vector2(1.73356, 2.09583)
 texture = ExtResource("5_rwlcf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(972, 539)
+
+[node name="fish_player" parent="." instance=ExtResource("3_03ma2")]
+position = Vector2(961, 768)
+
+[node name="bullet_time" type="Timer" parent="."]
 
 [node name="targets" type="Node" parent="."]
 

@@ -3,7 +3,6 @@ extends Node2D
 
 
 
-
 # screen_spots = 
 	#Vector2(0.25, 0.25), # top-left quadrant
 	#Vector2(0.75, 0.25), # top-right quadrant
@@ -11,6 +10,9 @@ extends Node2D
 	#Vector2(0.25, 0.75), # bottom-left quadrant
 	#Vector2(0.75, 0.75)  # bottom-right quadrant
 #
+
+@onready
+var cam := $Camera2D
 
 @onready 
 var bullet_time: Timer = $bullet_time
@@ -28,6 +30,24 @@ var test_fish : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	cam.enabled = true
+	
+	var game_size = Vector2(1920, 1080)
+	
+	var window_size = get_viewport().size
+	
+	var scale = min(window_size.x / game_size.x, window_size.y / game_size.y)
+	
+	var offset = (Vector2(window_size) - game_size * scale) / 2
+	
+	var logical_pos = Vector2(game_size.x / 2, game_size.y - 300.0)
+	
+	var warp_pos = logical_pos * scale + offset
+	
+	Input.warp_mouse(warp_pos)
+	
+	Global.player.global_position = logical_pos
+	
 	
 	
 	get_targets()
@@ -37,10 +57,8 @@ func _ready() -> void:
 	
 	bullet_timer()
 	
-	# spawn pos for the player
-	var spawn = TargetPositions.center
 	
-	Input.warp_mouse(spawn)
+	
 	
 	
 

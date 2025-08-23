@@ -10,7 +10,6 @@ func _ready() -> void:
 	
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	Input.warp_mouse(Vector2(957.0, .0))
 
 
 func _input(event: InputEvent) -> void:
