@@ -14,8 +14,6 @@ extends Node2D
 @onready
 var cam := $Camera2D
 
-@onready 
-var bullet_time: Timer = $bullet_time
 
 var fish_to_spawn : PackedScene
 
@@ -30,23 +28,7 @@ var test_fish : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cam.enabled = true
-	
-	var game_size = Vector2(1920, 1080)
-	
-	var window_size = get_viewport().size
-	
-	var scale = min(window_size.x / game_size.x, window_size.y / game_size.y)
-	
-	var offset = (Vector2(window_size) - game_size * scale) / 2
-	
-	var logical_pos = Vector2(game_size.x / 2, game_size.y - 300.0)
-	
-	var warp_pos = logical_pos * scale + offset
-	
-	Input.warp_mouse(warp_pos)
-	
-	Global.player.global_position = logical_pos
+	fix_spawn()
 	
 	
 	
@@ -54,8 +36,6 @@ func _ready() -> void:
 	
 	spawn_fish()
 	
-	
-	bullet_timer()
 	
 	
 	
@@ -66,8 +46,11 @@ func _process(_delta: float) -> void:
 	if Global.isDead:
 		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
 		
-		bullet_time.stop()
-	
+	if enemy_instance.health <= 0:
+		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
+		
+		Global.gain_coins(enemy_instance.value)
+		print("Caught a: " + enemy_instance.fish_name)
 
 
 
@@ -113,17 +96,8 @@ func spawn_fish():
 	
 	
 
-func _on_bullet_time_timeout() -> void:
-	Global.gain_coins(enemy_instance.value)
-	print(enemy_instance.fish_name)
-	
-	get_tree().change_scene_to_file("res://scenes/base/island.tscn")
 
-func bullet_timer():
-	bullet_time.wait_time = enemy_instance.bullet_hell_duration
-	
-	bullet_time.start()
-	
+
 
 
 func get_targets():
@@ -142,3 +116,24 @@ func get_targets():
 	TargetPositions.center_down = $targets/center_down.global_position
 	TargetPositions.center_left = $targets/center_left.global_position
 	TargetPositions.center_right = $targets/center_right.global_position
+
+
+# spawn of the player
+func fix_spawn():
+	cam.enabled = true
+	
+	var game_size = Vector2(1920, 1080)
+	
+	var window_size = get_viewport().size
+	
+	var window_scale = min(window_size.x / game_size.x, window_size.y / game_size.y)
+	
+	var offset = (Vector2(window_size.x - 60.0, window_size.y) - game_size * window_scale) / 2
+	
+	var logical_pos = Vector2(game_size.x / 2, game_size.y - 250.0)
+	
+	var warp_pos = logical_pos * window_scale + offset
+	
+	Input.warp_mouse(warp_pos)
+	
+	Global.player.global_position = logical_pos

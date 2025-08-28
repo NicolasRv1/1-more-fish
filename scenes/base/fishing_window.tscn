@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmk8rbfbw6euk"]
+[gd_scene load_steps=8 format=3 uid="uid://bmk8rbfbw6euk"]
 
 [ext_resource type="Script" uid="uid://dc1i7vm5vvc7n" path="res://scripts/fishing_window.gd" id="1_5ceif"]
+[ext_resource type="PackedScene" uid="uid://dkcnosgfo4gav" path="res://scenes/fishs/blue_fish.tscn" id="2_5fatw"]
 [ext_resource type="Texture2D" uid="uid://sl3x6h5wofej" path="res://assets/mycreations/battlescreen.png" id="2_rwlcf"]
 [ext_resource type="PackedScene" uid="uid://b4nfvqn0hpl1w" path="res://scenes/base/fish_player.tscn" id="3_03ma2"]
 [ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="4_qg37s"]
@@ -9,6 +10,7 @@
 
 [node name="fishing_window" type="Node2D"]
 script = ExtResource("1_5ceif")
+test_fish = ExtResource("2_5fatw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(964, 537)
@@ -46,8 +48,6 @@ position = Vector2(972, 539)
 [node name="fish_player" parent="." instance=ExtResource("3_03ma2")]
 position = Vector2(961, 768)
 
-[node name="bullet_time" type="Timer" parent="."]
-
 [node name="targets" type="Node" parent="."]
 
 [node name="enemy_spawn" type="Node2D" parent="targets"]
@@ -79,5 +79,3 @@ position = Vector2(937, 657)
 
 [node name="center_down" type="Marker2D" parent="targets"]
 position = Vector2(937, 865)
-
-[connection signal="timeout" from="bullet_time" to="." method="_on_bullet_time_timeout"]

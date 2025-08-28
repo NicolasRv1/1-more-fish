@@ -7,7 +7,7 @@
 size = Vector2(46, 15)
 
 [node name="fish_player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 512
+collision_layer = 131584
 collision_mask = 256
 motion_mode = 1
 script = ExtResource("1_317ln")
@@ -17,3 +17,9 @@ texture = ExtResource("1_uch3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_317ln")
+
+[node name="parry_cooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="parry_cooldown" to="." method="_on_parry_cooldown_timeout"]
