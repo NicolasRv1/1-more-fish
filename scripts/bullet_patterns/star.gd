@@ -7,7 +7,7 @@ var lifetime := 10.0
 @onready
 var fish_player := get_parent().get_node("fish_player")
 
-var fish_ref : StaticBody2D = null
+var fish_ref : Area2D = null
 
 
 

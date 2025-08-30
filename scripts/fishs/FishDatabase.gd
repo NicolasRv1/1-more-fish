@@ -10,7 +10,7 @@ var common_fish = {
 }
 
 var rare_fish = {
-	"Purple Fish": preload("res://scenes/fishs/purple_fish.tscn"),
-	"Golden Fish": preload("res://scenes/fishs/golden_fish.tscn"),
-	"Puffer Fish": preload("res://scenes/fishs/puffer_fish.tscn")
+	"Purple Fish": preload("res://scenes/fishs/purple_fish.tscn")#,
+	#"Golden Fish": preload("res://scenes/fishs/golden_fish.tscn"),
+	#"Puffer Fish": preload("res://scenes/fishs/puffer_fish.tscn")
 }

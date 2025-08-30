@@ -46,11 +46,11 @@ func _process(_delta: float) -> void:
 	if Global.isDead:
 		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
 		
-	if enemy_instance.health <= 0:
+	elif !Global.isDead and enemy_instance.health <= 0:
 		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
 		
 		Global.gain_coins(enemy_instance.value)
-		print("Caught a: " + enemy_instance.fish_name)
+		print("Caught: " + enemy_instance.fish_name)
 
 
 

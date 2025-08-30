@@ -4,7 +4,6 @@ extends FishData
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Golden Fish")
-	bullet_hell_duration = float(20.0)
 	value = 120
 	bullet_pattern = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
 	bullet_speed = 800.0

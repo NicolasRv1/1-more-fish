@@ -7,7 +7,6 @@ var bullets_per_burst := 5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Puffer Fish")
-	bullet_hell_duration = float(16.0)
 	value = 100
 	bullet_pattern = preload("res://scenes/bullet_patterns/burst_pattern.tscn")
 	bullet_speed = 400.0

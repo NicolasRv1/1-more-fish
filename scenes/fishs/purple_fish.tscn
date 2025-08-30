@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c8ybmdaif0x08" path="res://assets/mycreations/fishes/purplefish.png" id="1_8c1q7"]
 [ext_resource type="Script" uid="uid://c51703wu2tbjn" path="res://scripts/fishs/purple_fish.gd" id="1_xymxi"]
 
-[node name="purple_shark" type="StaticBody2D"]
+[node name="purple_shark" type="Area2D"]
 collision_layer = 256
 collision_mask = 512
 script = ExtResource("1_xymxi")
@@ -16,12 +16,16 @@ texture = ExtResource("1_8c1q7")
 position = Vector2(0, 35)
 
 [node name="cooldown" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.2
 
 [node name="Start" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="burst_cooldown" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Start" to="." method="_on_start_timeout"]
+[connection signal="timeout" from="burst_cooldown" to="." method="_on_burst_cooldown_timeout"]
