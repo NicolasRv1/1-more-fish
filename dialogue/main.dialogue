@@ -1,0 +1,50 @@
+~ start
+
+if State.fishing_pole == "has":
+	Tipman: So it gave you the fishing pole of the fishing poles, ahn!?
+	Tipman: You can press "F" next to a water spot to start fishing
+	Tipman: When hooking a fish, be ready to use your special bait to dodge the shots these crazy fishes can throw at you with your "Mouse"
+	Tipman: Stand alert to shooting stars! you must press "Left Mouse Button" just right before it hits your bait
+	Tipman: Doing this will parry the star back to the fish making it stun!
+	Tipman: Do this enough to succesfully catch a fish!
+	Tipman: Go have some fun in the waters!
+
+elif State.fishing_pole == "" and !State.key_to_hut:
+	Tipman: Hii! i am Tipman, you can call me Tip :#
+	Tipman: Ooh, i see, its your first time around here
+	Tipman: Go inside the hut over there, maybe the fisherman can help you
+	Tipman: Here, the keys for you to enter
+	set State.key_to_hut = true
+
+elif State.fishing_pole == "" and State.key_to_hut:
+	Tipman: Go talk to the fisherman inside the hut, maybe he can help you!
+
+
+=> END
+
+~ fishing_pole
+
+if State.fishing_pole == "":
+	Fisherman: Hey boy! looks like you dont have anything you can use for fun, eeygh
+	Fisherman: Here, you can have this, go talk to Tip in case you get lost trying to use it
+	set State.fishing_pole = "has"
+
+elif State.fishing_pole == "has":
+	Fisherman: Tip can help you if you stuck trying to figure out how to use this
+	Fisherman: Now get out of my way, go have some fun on the waters!
+
+=> END
+
+
+~ door
+
+Boy: Looks like i dont have the right key to it :(
+
+=> END
+
+
+~ fail_fish
+
+Boy: Looking the water like this makes me feel so cozy
+
+=> END

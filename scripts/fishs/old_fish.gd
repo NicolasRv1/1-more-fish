@@ -6,16 +6,16 @@ extends FishData
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Old Fish")
-	value = 7
+	value = 10
 	bullet_pattern = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
-	bullet_speed = 100.0
+	bullet_speed = 200.0
 	health = 100
 
 
 func _on_cooldown_timeout() -> void:
 	var star_chance = randi() % 100
 	
-	if player and star_chance <= 69:
+	if player and star_chance <= 79:
 		var bullet = bullet_pattern.instantiate()
 		
 		bullet.speed = bullet_speed + 60.0
@@ -37,7 +37,7 @@ func _on_cooldown_timeout() -> void:
 		var dir2 = (player.global_position - self.global_position).normalized()
 		bullet2.set_direction(dir2)
 	
-	elif player and star_chance >= 70:
+	elif player and star_chance >= 80:
 		var star = star_shot.instantiate()
 		star.speed = bullet_speed + 400.0
 		

@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://d58k0bp4eqwo"]
+
+[ext_resource type="Texture2D" uid="uid://shh8s688x626" path="res://assets/Character/Player.png" id="1_lf1g3"]
+[ext_resource type="Script" uid="uid://6sdo3ih7f10o" path="res://scripts/npcs/tipman.gd" id="1_v4hgn"]
+[ext_resource type="Resource" uid="uid://cgit5nbh5vjep" path="res://dialogue/main.dialogue" id="2_1mdko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4hgn"]
+atlas = ExtResource("1_lf1g3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mdko"]
+atlas = ExtResource("1_lf1g3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4k7d"]
+atlas = ExtResource("1_lf1g3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dlaq"]
+atlas = ExtResource("1_lf1g3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41w5k"]
+atlas = ExtResource("1_lf1g3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqhdx"]
+atlas = ExtResource("1_lf1g3")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y2fe1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4hgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mdko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4k7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dlaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41w5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqhdx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erakv"]
+radius = 25.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f02y4"]
+radius = 24.0
+height = 80.0
+
+[node name="tipman" type="StaticBody2D"]
+collision_layer = 65
+collision_mask = 16
+script = ExtResource("1_v4hgn")
+dialogue_resource = ExtResource("2_1mdko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_y2fe1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.669429
+
+[node name="action_point" type="Area2D" parent="."]
+collision_layer = 65
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="action_point"]
+position = Vector2(-2, -8)
+shape = SubResource("CapsuleShape2D_erakv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -7)
+shape = SubResource("CapsuleShape2D_f02y4")
+
+[connection signal="area_entered" from="action_point" to="." method="_on_action_point_area_entered"]
+[connection signal="area_exited" from="action_point" to="." method="_on_action_point_area_exited"]

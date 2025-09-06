@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b4e3j7wrple5g"]
+[gd_scene load_steps=19 format=4 uid="uid://b4e3j7wrple5g"]
 
 [ext_resource type="Script" uid="uid://b1udsw0oh3umq" path="res://scripts/island.gd" id="1_g0p0i"]
 [ext_resource type="PackedScene" uid="uid://6hkj1cpvlm5l" path="res://scenes/base/player.tscn" id="2_bw41s"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dao11f4hkh47t" path="res://assets/Pixel Lands Village Demo/Pixel Lands Village Demo/objects_demo.png" id="5_8nfxx"]
 [ext_resource type="PackedScene" uid="uid://0kekappix07w" path="res://scenes/base/door.tscn" id="6_8pwdv"]
 [ext_resource type="PackedScene" uid="uid://8gf7uhytaiue" path="res://scenes/base/ui_manager.tscn" id="7_bs31c"]
+[ext_resource type="PackedScene" uid="uid://d58k0bp4eqwo" path="res://scenes/npcs/tipman.tscn" id="8_n67vk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nl8jj"]
 texture = ExtResource("3_p8fln")
@@ -617,6 +618,9 @@ script = ExtResource("1_g0p0i")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(482, 205)
 zoom = Vector2(1.15, 1.15)
+
+[node name="tipman" parent="." instance=ExtResource("8_n67vk")]
+position = Vector2(361, -8)
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("2_bw41s")]
 position = Vector2(480, 189)

@@ -9,11 +9,11 @@ var bullets_per_burst2 := 3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Purple Fish")
-	value = 60
+	value = 300
 	bullet_pattern = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
 	secondary_shot = preload("res://scenes/bullet_patterns/burst_pattern.tscn")
 	bullet_speed = 1000.0
-	health = 100
+	health = 250
 	
 
 

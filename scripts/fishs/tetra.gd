@@ -7,7 +7,7 @@ var bullet_lifetime := 1.8
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Tetra")
-	value = 4
+	value = 30
 	bullet_pattern = preload("res://scenes/bullet_patterns/boomerang.tscn")
 	bullet_speed = 1000.0
 	health = 100

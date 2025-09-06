@@ -559,7 +559,7 @@ one_shot = true
 position = Vector2(0, 57)
 
 [node name="action_finder" type="Area2D" parent="action_point"]
-collision_layer = 34
+collision_layer = 50
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="action_point/action_finder"]

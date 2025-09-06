@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="2_alhth"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55yda"]
-radius = 40.4475
+radius = 39.0
 
 [node name="burst_pattern" type="Area2D"]
 script = ExtResource("1_alhth")

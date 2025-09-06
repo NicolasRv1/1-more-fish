@@ -21,12 +21,17 @@ var action_point: Node2D = $action_point
 var canFish = false
 
 
+var dialogue_resource : DialogueResource = load("res://dialogue/main.dialogue")
+
+var dialogue_start : String = "fail_fish"
+
+var Balloon = preload("res://dialogue/balloon.tscn")
 
 
 func _physics_process(delta: float) -> void:
 	
 	
-	if Input.is_action_just_pressed("fish") and !Global.lock_player and canFish:
+	if Input.is_action_just_pressed("fish") and !Global.lock_player and canFish and State.fishing_pole:
 		match animations.animation:
 			"walkUp", "runUp", "idleUp": animations.animation = "fishUp"
 			"walk", "run", "idle": animations.animation = "fish"
@@ -36,6 +41,17 @@ func _physics_process(delta: float) -> void:
 		fish_time.start()
 		Global.lock_player = true
 		fishing = true
+	
+	elif Input.is_action_just_pressed("fish") and !State.fishing_pole and canFish and !State.talking:
+		State.talking = true
+		Global.lock_player = true
+		var balloon : Node = Balloon.instantiate()
+		get_tree().current_scene.add_child(balloon)
+		balloon.start(dialogue_resource, dialogue_start)
+		DialogueManager.dialogue_ended.connect(State.on_dialogue_finished)
+	
+	elif Input.is_action_just_pressed("action") and !State.fishing_pole and canFish and State.talking:
+		return
 
 	if Input.is_action_pressed("run"):
 		speed = run_speed

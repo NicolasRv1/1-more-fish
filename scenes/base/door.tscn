@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://0kekappix07w"]
+[gd_scene load_steps=3 format=3 uid="uid://0kekappix07w"]
 
-[ext_resource type="Script" uid="uid://7g0jleb8ldwe" path="res://fishFishfish/scripts/door.gd" id="1_bdok0"]
+[ext_resource type="Script" uid="uid://7g0jleb8ldwe" path="res://scripts/door.gd" id="1_bdok0"]
+[ext_resource type="Resource" uid="uid://cgit5nbh5vjep" path="res://dialogue/main.dialogue" id="2_5wbtc"]
 
 [node name="door" type="Area2D"]
 collision_layer = 64
 collision_mask = 32
 script = ExtResource("1_bdok0")
+dialogue_resource = ExtResource("2_5wbtc")
 
 [connection signal="area_entered" from="." to="." method="_on_action_point_entered"]
