@@ -16,16 +16,12 @@ texture = ExtResource("1_qovcj")
 position = Vector2(0, 35)
 
 [node name="cooldown" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.6
 
 [node name="start" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="burst_cooldown" type="Timer" parent="."]
-wait_time = 0.2
-
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="start" to="." method="_on_start_timeout"]
-[connection signal="timeout" from="burst_cooldown" to="." method="_on_burst_cooldown_timeout"]

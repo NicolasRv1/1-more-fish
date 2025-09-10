@@ -11,15 +11,19 @@ extends Node2D
 	#Vector2(0.75, 0.75)  # bottom-right quadrant
 #
 
+
+
 @onready
 var cam := $Camera2D
-
 
 var fish_to_spawn : PackedScene
 
 var enemy_instance : Node = null
 
 var rarity = randf()
+
+@onready
+var caught_sfx = AudioStreamPlayer.new()
 
 @export
 var test_fish : PackedScene
@@ -28,6 +32,9 @@ var test_fish : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_child(caught_sfx)
+	caught_sfx.stream = load("res://assets/fish audio/fish_caught.wav")
+	
 	fix_spawn()
 	
 	
@@ -37,20 +44,35 @@ func _ready() -> void:
 	spawn_fish()
 	
 	
-	
-	
-	
-	
 
 func _process(_delta: float) -> void:
 	if Global.isDead:
+		await ScreenFader.fade_in(0.5)
 		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
+		await ScreenFader.fade_out(0.5)
+
+	elif !Global.isDead and enemy_instance.health <= 0 and !caught_sfx.playing:
+		caught_sfx.play()
+		var enemy_sprite : Sprite2D = enemy_instance.get_node("Sprite2D")
+		enemy_sprite.visible = false
 		
-	elif !Global.isDead and enemy_instance.health <= 0:
-		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
+		
+		Global.player.get_node("CollisionShape2D").queue_free()
+		
+		await ScreenFader.fade_in(1.6)
+		
+		State.win = "Victory"
 		
 		Global.gain_coins(enemy_instance.value)
 		print("Caught: " + enemy_instance.fish_name)
+		
+		get_tree().change_scene_to_file("res://scenes/base/island.tscn")
+		await ScreenFader.fade_out(1.6)
+
+
+
+
+
 
 
 
@@ -80,7 +102,9 @@ func spawn_fish():
 	
 	if rarity <= 0.80 and !test_fish:
 		fish_to_spawn = random_common
+		$common.play()
 	else:
+		$rare.play()
 		fish_to_spawn = random_rare
 	
 	if test_fish:

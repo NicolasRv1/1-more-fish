@@ -1,67 +1,83 @@
 extends FishData
 
-var bullet_forward_time := 1.2
-var bullet_lifetime := 2.4
+var bursts := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Cat Fish")
 	value = 45
-	bullet_pattern = preload("res://scenes/bullet_patterns/boomerang.tscn")
-	secondary_shot = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
-	bullet_speed = 650.0
+	bullet_pattern = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
+	bullet_speed = 250.0
 	health = 100
 	
 
 
 func _on_cooldown_timeout() -> void:
-	var star_chance = randi() % 100
-	
-	if player and star_chance <= 69:
-		var bullet = bullet_pattern.instantiate()
-		bullet.forward_time = bullet_forward_time
-		bullet.lifetime = bullet_lifetime
-		bullet.forward_speed = bullet_speed
-		bullet.return_speed = bullet_speed - 100
-		
-		get_parent().add_child(bullet)
-		bullet.global_position = $fire_spawn.global_position
-		bullet.shooter_position = self.global_position
-		
-		
-		bullet.direction = (player.global_position - self.global_position).normalized()
-	
-	elif player and star_chance >= 70:
+	if bursts > 2 and bursts < 5 or bursts > 7:
+		await $burst_cooldown.wait_time
 		var star = star_shot.instantiate()
-		star.speed = bullet_speed - 100.0
-		star.lifetime = bullet_lifetime - 1.65
-		
+		star.speed = bullet_speed
 		star.fish_ref = self
 		
 		get_parent().add_child(star)
 		
-		star.global_position = $fire_spawn.global_position
+		star.global_position = TargetPositions.center_up + Vector2(0.0, -210.0)
 		
-		var dir = (player.global_position - self.global_position).normalized()
+		var direction = Vector2(0.0, 1.0)
 		
-		star.set_direction(dir)
+		star.set_direction(direction)
+	
 
 
 
-
-func _on_start_timeout() -> void:
-	$cooldown.start()
-	$burst_cooldown.start()
 
 
 func _on_burst_cooldown_timeout() -> void:
-	var h_bullet = secondary_shot.instantiate()
-	h_bullet.speed = bullet_speed - 300.0
+	if $cooldown.is_stopped():
+		$cooldown.start()
 	
-	get_parent().add_child(h_bullet)
+	bursts += 1
 	
-	h_bullet.global_position = TargetPositions.center + Vector2(842.0, 0.0)
+	if bursts <= 2 or bursts > 5 and bursts < 7:
+		var first_right_bullet = bullet_pattern.instantiate()
+		var second_right_bullet = bullet_pattern.instantiate()
+		var third_right_bullet = bullet_pattern.instantiate()
+		
+		var first_left_bullet = bullet_pattern.instantiate()
+		var second_left_bullet = bullet_pattern.instantiate()
+		
+		first_right_bullet.speed = bullet_speed
+		second_right_bullet.speed = bullet_speed
+		third_right_bullet.speed = bullet_speed
+		
+		first_left_bullet.speed = bullet_speed
+		second_left_bullet.speed = bullet_speed
+		
+		get_parent().add_child(first_right_bullet)
+		get_parent().add_child(second_right_bullet)
+		get_parent().add_child(third_right_bullet)
+		
+		get_parent().add_child(first_left_bullet)
+		get_parent().add_child(second_left_bullet)
+		
+		first_right_bullet.global_position = TargetPositions.center_up + Vector2(842.0, -20.0)
+		second_right_bullet.global_position = TargetPositions.center + Vector2(842.0, 10.0)
+		third_right_bullet.global_position = TargetPositions.center_down + Vector2(842.0, 10.0)
+		
+		first_left_bullet.global_position = TargetPositions.center_up + Vector2(-842.0, 40.0)
+		second_left_bullet.global_position = TargetPositions.center_down + Vector2(-842.0, -50.0)
+		
+		var right_dir = Vector2(-1.0, 0.0)
+		var left_dir = Vector2(1.0, 0.0)
+		
+		first_right_bullet.set_direction(right_dir)
+		second_right_bullet.set_direction(right_dir)
+		third_right_bullet.set_direction(right_dir)
+		
+		first_left_bullet.set_direction(left_dir)
+		second_left_bullet.set_direction(left_dir)
 	
-	var dir = Vector2(-1.0, 0.0)
-	
-	h_bullet.set_direction(dir)
+	else:
+		$burst_cooldown.stop()
+		$burst_cooldown.start()
+		return

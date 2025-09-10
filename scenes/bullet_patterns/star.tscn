@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5bnccaekccol"]
+[gd_scene load_steps=7 format=3 uid="uid://b5bnccaekccol"]
 
 [ext_resource type="Script" uid="uid://5gyq4oghbwsh" path="res://scripts/bullet_patterns/star.gd" id="1_e4wmn"]
 [ext_resource type="Texture2D" uid="uid://cwyus84fr4hf" path="res://assets/mycreations/star.png" id="1_tmijd"]
 [ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="3_h5u1u"]
+[ext_resource type="AudioStream" uid="uid://d1gibqhjg2eip" path="res://assets/fish audio/hit.wav" id="4_h5u1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_saj0f"]
 radius = 19.5064
@@ -28,4 +29,9 @@ shape = SubResource("CircleShape2D_saj0f")
 [node name="parry_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nykx0")
 
+[node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_h5u1u")
+volume_db = 10.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="hit_sound" to="." method="_on_hit_sound_finished"]

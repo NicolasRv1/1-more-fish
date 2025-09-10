@@ -1,11 +1,11 @@
 extends Area2D
 
 
-var linear_velocity := Vector2.ZERO
+var velocity := Vector2.ZERO
 var lifetime := 6.0
 
 func _physics_process(delta: float) -> void:
-	position += linear_velocity * delta
+	position += velocity * delta
 	
 	lifetime -= delta
 	if lifetime <= 0:

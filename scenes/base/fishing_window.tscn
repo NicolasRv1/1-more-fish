@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmk8rbfbw6euk"]
+[gd_scene load_steps=9 format=3 uid="uid://bmk8rbfbw6euk"]
 
 [ext_resource type="Script" uid="uid://dc1i7vm5vvc7n" path="res://scripts/fishing_window.gd" id="1_5ceif"]
 [ext_resource type="Texture2D" uid="uid://sl3x6h5wofej" path="res://assets/mycreations/battlescreen.png" id="2_rwlcf"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ccx2nxwifmj8d" path="res://scenes/base/deadzone.tscn" id="4_qg37s"]
 [ext_resource type="Script" uid="uid://dyxjhbw7q8uj" path="res://scripts/center_screen.gd" id="4_qum10"]
 [ext_resource type="Texture2D" uid="uid://byjrrweiugcny" path="res://assets/mycreations/battleboxlimit.png" id="5_rwlcf"]
+[ext_resource type="AudioStream" uid="uid://b2a86wm7kkn6f" path="res://assets/fish audio/common_music.wav" id="7_5fatw"]
+[ext_resource type="AudioStream" uid="uid://qwmvu3l74m18" path="res://assets/fish audio/rare_music.wav" id="8_feldt"]
 
 [node name="fishing_window" type="Node2D"]
 script = ExtResource("1_5ceif")
@@ -77,3 +79,11 @@ position = Vector2(937, 657)
 
 [node name="center_down" type="Marker2D" parent="targets"]
 position = Vector2(937, 865)
+
+[node name="common" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5fatw")
+volume_db = -8.0
+
+[node name="rare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_feldt")
+volume_db = -10.0

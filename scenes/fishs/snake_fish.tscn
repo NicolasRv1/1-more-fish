@@ -14,7 +14,7 @@ texture = ExtResource("1_5rr4c")
 position = Vector2(0, 35)
 
 [node name="cooldown" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.8
 
 [node name="start" type="Timer" parent="."]
 wait_time = 2.0

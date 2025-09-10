@@ -7,6 +7,8 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -86,6 +88,11 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 	resource = dialogue_resource
 	self.dialogue_line = await resource.get_next_dialogue_line(title, temporary_game_states)
 
+func _process(_delta: float) -> void:
+	if dialogue_label.is_typing:
+		$dialogue_sfx.play()
+	else:
+		$dialogue_sfx.stop()
 
 ## Apply any changes to the balloon given a new [DialogueLine].
 func apply_dialogue_line() -> void:

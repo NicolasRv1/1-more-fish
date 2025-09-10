@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://scripts/global.gd"
+ScreenFader="*res://scenes/screen_fader.tscn"
 FishDatabase="*res://scripts/fishs/FishDatabase.gd"
 TargetPositions="*res://scripts/bullet_patterns/target_pos.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"

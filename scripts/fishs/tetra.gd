@@ -1,16 +1,16 @@
 extends FishData
 
-var bullet_forward_time := 0.8
-var bullet_lifetime := 1.8
+var bullet_forward_time := 1.2
+var bullet_lifetime := 3.2
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Tetra")
-	value = 30
+	value = 75
 	bullet_pattern = preload("res://scenes/bullet_patterns/boomerang.tscn")
-	bullet_speed = 1000.0
-	health = 100
+	bullet_speed = 700.0
+	health = 250
 
 
 func _on_cooldown_timeout() -> void:
@@ -49,32 +49,3 @@ func _on_cooldown_timeout() -> void:
 
 func _on_start_timeout() -> void:
 	$cooldown.start()
-	$burst_cooldown.start()
-
-
-func _on_burst_cooldown_timeout() -> void:
-	if player:
-		var top = bullet_pattern.instantiate()
-		var down = bullet_pattern.instantiate()
-		
-		top.forward_time = bullet_forward_time + 1.4
-		top.lifetime = bullet_lifetime + 1.8
-		top.forward_speed = bullet_speed - 300
-		top.return_speed = bullet_speed - 150
-		
-		down.forward_time = bullet_forward_time + 1.4
-		down.lifetime = bullet_lifetime + 1.8
-		down.forward_speed = bullet_speed - 300
-		down.return_speed = bullet_speed - 150
-		
-		get_parent().add_child(top)
-		get_parent().add_child(down)
-		
-		top.global_position = TargetPositions.center + Vector2(810.0, -124.0)
-		down.global_position = TargetPositions.center + Vector2(-810.0, 124.0)
-		
-		top.shooter_position = top.global_position
-		down.shooter_position = down.global_position
-		
-		top.direction = Vector2(-1.0, 0.0)
-		down.direction = Vector2(1.0, 0.0)

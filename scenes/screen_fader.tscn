@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://7wyovflwu0gw"]
+
+[ext_resource type="Script" uid="uid://cldejm46q1cg8" path="res://scripts/shaders/screen_fader.gd" id="1_vfc73"]
+[ext_resource type="Shader" uid="uid://crn05m0ohci1g" path="res://scripts/shaders/fishing_window.gdshader" id="2_ncxo3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6iv5h"]
+shader = ExtResource("2_ncxo3")
+shader_parameter/progress = 0.0
+shader_parameter/noise_scale = 100.0
+
+[node name="screen_fader" type="CanvasLayer"]
+script = ExtResource("1_vfc73")
+
+[node name="rand_pixels" type="ColorRect" parent="."]
+z_as_relative = false
+material = SubResource("ShaderMaterial_6iv5h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

@@ -6,6 +6,8 @@ var key_to_hut : bool = false
 
 var talking : bool = false
 
+var win : String = ""
+
 
 func on_dialogue_finished(_dialogue_resource):
 	talking = false

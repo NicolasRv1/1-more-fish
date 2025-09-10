@@ -142,9 +142,8 @@ func update_animations(input_vector: Vector2) -> void:
 
 func _on_fishing_timeout() -> void:
 	fishing = false
+	$hook_sound.play()
 	
-	
-	get_tree().change_scene_to_file("res://scenes/base/fishing_window.tscn")
 	
 
 
@@ -154,3 +153,11 @@ func _on_action_finder_body_entered(_body: Node2D) -> void:
 
 func _on_action_finder_body_exited(_body: Node2D) -> void:
 	canFish = false
+
+
+func _on_hook_sound_finished() -> void:
+	get_parent().get_node("bm").stop()
+	$battle_sfx.play()
+	await ScreenFader.fade_in(2.0)
+	get_tree().change_scene_to_file("res://scenes/base/fishing_window.tscn")
+	await ScreenFader.fade_out(1.0)

@@ -8,4 +8,4 @@ func _ready() -> void:
 	$UIManager/coinsTxt.text = str(Engine.get_frames_per_second())
 	$UIManager/coinsTxt.text = str(Global.fish_coin)
 	$player.action_point.position = Vector2(0.0, -57.0)
-	
+	State.win = ""

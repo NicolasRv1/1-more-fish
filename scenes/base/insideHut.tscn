@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c5qh6a7e1qgo4"]
+[gd_scene load_steps=13 format=4 uid="uid://c5qh6a7e1qgo4"]
 
 [ext_resource type="Script" uid="uid://bmf01h7jw4b7t" path="res://scripts/hut.gd" id="1_k35da"]
 [ext_resource type="PackedScene" uid="uid://6hkj1cpvlm5l" path="res://scenes/base/player.tscn" id="2_jrfp1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0kekappix07w" path="res://scenes/base/door.tscn" id="4_t882b"]
 [ext_resource type="PackedScene" uid="uid://8gf7uhytaiue" path="res://scenes/base/ui_manager.tscn" id="5_0sfjd"]
 [ext_resource type="PackedScene" uid="uid://c2rq40xxtjfeh" path="res://scenes/npcs/fisherman.tscn" id="6_s1l0f"]
+[ext_resource type="AudioStream" uid="uid://by8lmtjta4e2o" path="res://assets/fish audio/hut.mp3" id="7_g3jp2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk1x3"]
 texture = ExtResource("3_alyd7")
@@ -590,5 +591,10 @@ position = Vector2(57, -67.5)
 shape = SubResource("RectangleShape2D_rtkhk")
 
 [node name="UIManager" parent="." instance=ExtResource("5_0sfjd")]
+
+[node name="shop_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_g3jp2")
+volume_db = -22.0
+autoplay = true
 
 [connection signal="area_exited" from="door" to="door" method="_on_area_exited"]

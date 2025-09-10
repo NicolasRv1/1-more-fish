@@ -1,10 +1,12 @@
-[gd_scene load_steps=75 format=3 uid="uid://6hkj1cpvlm5l"]
+[gd_scene load_steps=77 format=3 uid="uid://6hkj1cpvlm5l"]
 
 [ext_resource type="Texture2D" uid="uid://kx5jgavwth28" path="res://assets/Hana Caraka - Base Character [sample]/idle.png" id="1_51jx6"]
 [ext_resource type="Script" uid="uid://e2xmugqbari8" path="res://scripts/player.gd" id="1_appya"]
 [ext_resource type="Texture2D" uid="uid://6ohk8373ka5e" path="res://assets/Hana Caraka - Base Character [sample]/run.png" id="2_appya"]
 [ext_resource type="Texture2D" uid="uid://b2kogsiik5nn2" path="res://assets/Hana Caraka - Base Character [sample]/jump.png" id="2_ipoat"]
 [ext_resource type="Texture2D" uid="uid://kfk7mmsox0lt" path="res://assets/Hana Caraka - Base Character [sample]/walk.png" id="3_ipoat"]
+[ext_resource type="AudioStream" uid="uid://dbsix7tmoijwj" path="res://assets/fish audio/hook.wav" id="6_aitob"]
+[ext_resource type="AudioStream" uid="uid://crfoxn8yc5svo" path="res://assets/fish audio/warriordrums.wav" id="7_2hjov"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yh7i0"]
 atlas = ExtResource("2_ipoat")
@@ -565,6 +567,15 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="action_point/action_finder"]
 shape = SubResource("CircleShape2D_ipoat")
 
+[node name="hook_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_aitob")
+volume_db = -5.0
+
+[node name="battle_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2hjov")
+volume_db = -6.0
+
 [connection signal="timeout" from="fishing" to="." method="_on_fishing_timeout"]
 [connection signal="body_entered" from="action_point/action_finder" to="." method="_on_action_finder_body_entered"]
 [connection signal="body_exited" from="action_point/action_finder" to="." method="_on_action_finder_body_exited"]
+[connection signal="finished" from="hook_sound" to="." method="_on_hook_sound_finished"]

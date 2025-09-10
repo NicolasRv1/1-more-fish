@@ -1,82 +1,72 @@
 extends FishData
 
-
+var start := 4.0
+var num_bullets := 20
+var h_range := 50.0
+var burst_cooldown := 2.0
+var canShoot := true
+var fire_chance := 0.85
+var left_bound_start := -1.0
+var left_bound_end := 500.0
+var right_bound_start := 1350.0
+var right_bound_end := 1920.0
+var stars_spawned := 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish_name = str("Old Fish")
-	value = 10
+	value = 120
 	bullet_pattern = preload("res://scenes/bullet_patterns/basic_follow_pattern.tscn")
 	bullet_speed = 200.0
-	health = 100
+	health = 150
 
 
-func _on_cooldown_timeout() -> void:
-	var star_chance = randi() % 100
+func _process(_delta: float) -> void:
+	await get_tree().create_timer(start).timeout
 	
-	if player and star_chance <= 79:
-		var bullet = bullet_pattern.instantiate()
-		
-		bullet.speed = bullet_speed + 60.0
-		bullet.lifetime = 16.0
-		
-		get_parent().add_child(bullet)
-		bullet.global_position = TargetPositions.center + Vector2(766.0, 0.0)
-		
-		var direction = (player.global_position - bullet.global_position).normalized()
-		bullet.set_direction(direction)
-		
-		var bullet2 = bullet_pattern.instantiate()
-		
-		bullet2.speed = bullet_speed + 120.0
-		
-		get_parent().add_child(bullet2)
-		bullet2.global_position = $fire_spawn.global_position
-		
-		var dir2 = (player.global_position - self.global_position).normalized()
-		bullet2.set_direction(dir2)
-	
-	elif player and star_chance >= 80:
-		var star = star_shot.instantiate()
-		star.speed = bullet_speed + 400.0
-		
-		star.fish_ref = self
-		
-		get_parent().add_child(star)
-		
-		star.global_position = $fire_spawn.global_position
-		
-		var dir = (player.global_position - self.global_position).normalized()
-		
-		star.set_direction(dir)
+	if canShoot:
+		shoot_wave()
+		canShoot = false
+		await get_tree().create_timer(burst_cooldown).timeout
+		canShoot = true
 
 
-func _on_start_timeout() -> void:
-	$cooldown.start()
-	$burst_cooldown.start()
+func shoot_wave():
+	var screen_width = get_viewport().size.x
+	
+	
+	for i in range(num_bullets):
+		var x_pos = (screen_width / (num_bullets + 1) * (i + 1))
+		
+		if x_pos >= left_bound_start and x_pos <= left_bound_end:
+			continue
+		if x_pos >= right_bound_start and x_pos <= right_bound_end:
+			continue
+		
+		var bullet
+		
+		if randf() < fire_chance:
+			randomize()
+			
+			if stars_spawned < 2 and randf() >= 0.075:
+				bullet = bullet_pattern.instantiate()
+				
+				bullet.global_position = Vector2(x_pos, 420.0)
+				bullet.velocity = Vector2.DOWN * bullet_speed
 
-
-func _on_burst_cooldown_timeout() -> void:
-	
-	var up_right = bullet_pattern.instantiate()
-	var up_left = bullet_pattern.instantiate()
-	
-	
-	up_right.speed = bullet_speed
-	up_left.speed = bullet_speed
-	
-	
-	get_parent().add_child(up_right)
-	get_parent().add_child(up_left)
-
-	
-	up_right.global_position = TargetPositions.center_right + Vector2(0.0, -300.0)
-	up_left.global_position = TargetPositions.center_left + Vector2(0.0, -300.0)
-
-	
-	var up_dir = Vector2(0.0, 1.0)
-	
-	up_right.set_direction(up_dir)
-	up_left.set_direction(up_dir)
-	
+			else:
+				bullet = star_shot.instantiate()
+				stars_spawned += 1
+				
+				bullet.fish_ref = self
+				
+				bullet.global_position = Vector2(x_pos, 420.0)
+				bullet.velocity = Vector2.DOWN * bullet_speed
+		
+		
+			get_parent().add_child(bullet)
+			stars_spawned = 0
+		
+		
+		

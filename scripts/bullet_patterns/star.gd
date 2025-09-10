@@ -4,8 +4,9 @@ var speed : float
 var velocity : Vector2 = Vector2.ZERO
 var lifetime := 10.0
 
+
 @onready
-var fish_player := get_parent().get_node("fish_player")
+var fish_player := get_tree().current_scene.get_node("fish_player")
 
 var fish_ref : Area2D = null
 
@@ -21,11 +22,20 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	
 	if !fish_player.parry and fish_ref != null:
-		queue_free()
-		fish_ref.health -= 50
+		$hit_sound.play()
+		
+		$deadzone.queue_free()
+		$Sprite2D.queue_free()
+		$parry_collision.queue_free()
+		
+
 	elif fish_player.parry and fish_ref != null:
 		pass
 	
 
 func set_direction(direction: Vector2):
 	velocity = direction.normalized() * speed
+
+
+func _on_hit_sound_finished() -> void:
+	fish_ref.health -= 50

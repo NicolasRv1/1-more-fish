@@ -21,12 +21,20 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("action") and canEnter and State.key_to_hut:
 
 		if Global.current_scene == "island":
+			Global.lock_player = true
+			await ScreenFader.fade_in(0.5)
 			get_tree().change_scene_to_file("res://scenes/base/insideHut.tscn")
 			Global.current_scene = "hut"
+			Global.lock_player = false
+			await ScreenFader.fade_out(0.5)
 
 		elif Global.current_scene == "hut":
+			Global.lock_player = true
+			await ScreenFader.fade_in(0.5)
 			get_tree().change_scene_to_file("res://scenes/base/island.tscn")
 			Global.current_scene = "island"
+			Global.lock_player = false
+			await ScreenFader.fade_out(0.5)
 
 	elif Input.is_action_just_pressed("action") and canEnter and !State.key_to_hut and !State.talking:
 		State.talking = true
