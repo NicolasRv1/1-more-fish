@@ -1,4 +1,4 @@
-# 🎣 [Game Name]
+# 🎣 [One More Fish]
 
 > **Cast a line, dodge the shine.** A cozy-turned-chaotic fishing game where reeling in a catch triggers fast-paced, *Undertale*-style bullet hell battles.
 
@@ -10,7 +10,7 @@
 
 ## 📸 Overview
 
-**[Game Name]** blends the relaxing vibe of classic fishing games with high-intensity arcade bullet hell mechanics. Cast your line into serene waters, but be prepared—once a fish takes the bait, you'll have to survive its unique attack patterns to reel it in.
+**[One More Fish]** blends the relaxing vibe of classic fishing games with high-intensity arcade bullet hell mechanics. Cast your line into serene waters, but be prepared—once a fish takes the bait, you'll have to survive its unique attack patterns to reel it in.
 
 Sell your terrifying deep-sea catches, upgrade your gear, and venture into dangerous waters for even bigger bounties.
 
