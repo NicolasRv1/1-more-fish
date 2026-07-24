@@ -3,7 +3,7 @@
 > **Cast a line, dodge the shine.** A cozy-turned-chaotic fishing game where reeling in a catch triggers fast-paced, *Undertale*-style bullet hell battles.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Engine: Godot](https://img.shields.io/badge/Engine-Godot_/_Unity-blue.svg)](#)
+[![Engine: Godot](https://img.shields.io/badge/Engine-Godot-blue.svg)](#)
 [![Status: In Development](https://img.shields.io/badge/Status-In_Development-orange.svg)](#)
 
 ---
